@@ -118,7 +118,6 @@ formData.value = {
   date: new Date(item.value.date).toISOString().split("T")[0],
   items: item.value.items,
 };
-console.log(formData.value);
 
 // Function to handle form submission
 const handleSubmit = async () => {

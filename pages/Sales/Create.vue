@@ -60,7 +60,6 @@
         console.error("Please fill out all fields");
         return;
     }
-    console.log(formData.value.date)
     formData.value.date = new Date(formData.value.date).toISOString();
     const { data: newSale, error} = await useFetch('/api/Sales', {
       method: 'POST',

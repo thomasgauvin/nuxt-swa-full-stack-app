@@ -82,7 +82,6 @@ let itemPrices = {};
 const { data: sales, refresh: refreshSales } = await useFetch("/api/Sales");
 const { data: items, refresh: refreshItems } = await useFetch("/api/Items");
 if (items) {
-  console.log(items.value)
   for(let i = 0; i < items.value.length; i++) {
     itemPrices[items.value[i].id] = items.value[i].price;
   }
@@ -101,14 +100,11 @@ const handleDelete = async (saleId) => {
 };
 
 const calculateRevenueForItem = (item, quantity) => {
-  console.log(itemPrices)
-  console.log(item, quantity, itemPrices[item.id])
   const itemPrice = itemPrices[item.id] || 0; // Use 0 if price is not available
   return itemPrice * quantity;
 };
 
 const calculateTotalRevenue = (sale) => {
-  console.log(sale.items, itemPrices)
   return sale.items.reduce((acc, item) => {
     const itemPrice = itemPrices[item.id] || 0; // Use 0 if price is not available
     return acc + itemPrice * item.quantity;
