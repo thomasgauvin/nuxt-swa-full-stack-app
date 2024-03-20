@@ -16,17 +16,18 @@ export default defineEventHandler(async (event) => {
             setResponseStatus(event, 500);
             return `Error retrieving items from the database: ${error.message}`;
         }
-    } else if (method === "POST") { // Create new item
-        try {
-            const newItem = await readBody(event);
-            console.log(newItem);
-            const { resource: createdItem } = await container.items.create(newItem);
-            setResponseStatus(event, 201);
-            return createdItem;
-        } catch (error) {
-            setResponseStatus(event, 500);
-            return `Error creating item in the database: ${error.message}`;
-        }
+    // Uncomment the following code to enable mutations
+    // } else if (method === "POST") { // Create new item
+    //     try {
+    //         const newItem = await readBody(event);
+    //         console.log(newItem);
+    //         const { resource: createdItem } = await container.items.create(newItem);
+    //         setResponseStatus(event, 201);
+    //         return createdItem;
+    //     } catch (error) {
+    //         setResponseStatus(event, 500);
+    //         return `Error creating item in the database: ${error.message}`;
+    //     }
     } else {
         setResponseStatus(event, 405);
         return "Method Not Allowed";
