@@ -26,5 +26,7 @@ To deploy to Azure Static Web Apps, create a Static Web Apps resource from the A
 
 Set the following environment variables in the Static Web Apps resource from the Azure Portal:
 
-"COSMOSDB_KEY": "<ENTER COSMOS DB KEY>",
-"COSMOSDB_ENDPOINT": "<ENTER COSMOS DB ENDPOINT>",
+"NUXT_COSMOSDB_KEY": "<ENTER COSMOS DB KEY>",
+"NUXT_COSMOSDB_ENDPOINT": "<ENTER COSMOS DB ENDPOINT>",
+
+These will overwrite the runtime config we've set in the `nuxt.config.js` file. Nuxt automatically detects environment variables with the 'NUXT_' prefix and overwrites the runtime config NUXT_COSMOSDB_KEY is set to the runtime config cosmosdbKey, and NUXT_COSMOSDB_ENDPOINT is set to the runtime config cosmosdbEndpoint (by convention).
