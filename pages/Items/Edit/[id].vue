@@ -87,6 +87,7 @@ const handleSubmit = async () => {
     });
     if (error.value) {
       console.error("Error updating item:", error);
+      return;
     }
     navigateTo("/items");
 };

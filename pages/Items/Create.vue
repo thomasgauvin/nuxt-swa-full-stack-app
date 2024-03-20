@@ -84,8 +84,9 @@ const handleSubmit = async () => {
       price: formData.value.price,
     },
   });
-  if (error.value) {
+  if(error.value) {
     console.error("Error creating item:", error);
+    return;
   }
   navigateTo("/items");
 };

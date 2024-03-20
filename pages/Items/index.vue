@@ -48,11 +48,13 @@
 const { data: items, refresh: refreshItems } = await useFetch("/api/Items");
 
 const handleDelete = async (itemId) => {
-  const {data, error} = await fetch(`/api/Items/${itemId}`, {
+  const {data, error} = await useFetch(`/api/Items/${itemId}`, {
     method: "DELETE",
   });
-  if (error.value) {
+  console.log(error)
+  if (error && error.value) {
     console.error("Error deleting item:", error);
+    return;
   }
   // Trigger re-fetch after deletion
   refreshItems();

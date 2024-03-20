@@ -54,28 +54,8 @@
 
 <script setup>
 
-const sales = ref([]);
-const items = ref([]);
-
-onMounted(async () => {
-  await fetchData();
-});
-
-const fetchData = async () => {
-  try {
-    const salesResponse = await fetch("/api/Sales");
-    const itemsResponse = await fetch("/api/Items");
-
-    if (!salesResponse.ok || !itemsResponse.ok) {
-      throw new Error("Failed to fetch data");
-    }
-
-    sales.value = await salesResponse.json();
-    items.value = await itemsResponse.json();
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
-};
+const { data: items, refresh: refreshItems } = await useFetch("/api/Items");
+const { data: sales, refresh: refreshSales } = await useFetch("/api/Sales");
 
 // Calculate revenue for the past n days
 const calculateRevenueForDays = (days) => {

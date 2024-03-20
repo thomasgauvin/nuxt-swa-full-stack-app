@@ -88,15 +88,15 @@ if (items) {
 }
 
 const handleDelete = async (saleId) => {
-  try {
-    await fetch(`/api/Sales/${saleId}`, {
+  const { data, error } = await fetch(`/api/Sales/${saleId}`, {
       method: "DELETE",
     });
+    if(error && error.value) {
+      console.error("Error deleting sale:", error);
+      return;
+    }
     // Trigger re-fetch after deletion
     refreshSales();
-  } catch (error) {
-    console.error("Error deleting sale:", error);
-  }
 };
 
 const calculateRevenueForItem = (item, quantity) => {
